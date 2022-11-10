@@ -8,7 +8,7 @@ const ComentInput = () => {
       marginTop: 2, 
       padding: 1, 
       backgroundColor: '#dee1e3', 
-      color: 'white'
+      color: 'black'
     }} 
     id="input-coment" 
     placeholder='Comentários, sugestões ...' 
