@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { Container, Content } from './styles'
+import { Container } from './styles'
 import { 
   IoRocketSharp,
   IoHomeSharp,
@@ -13,7 +13,6 @@ import SidebarItem from '../SidebarItem'
 const Sidebar = ({ active }) => {
   return (
     <Container sidebar={active}>
-      <Content>
         <Link to="/gerencia">
           <SidebarItem Icon={IoRocketSharp} Text='Gerência de contas' Back={true} />
         </Link>
@@ -32,7 +31,6 @@ const Sidebar = ({ active }) => {
         <Link to="/store">
           <SidebarItem Icon={IoBook} Text='Store' />
         </Link>
-      </Content>
     </Container>
   )
 }

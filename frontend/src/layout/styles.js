@@ -28,6 +28,6 @@ export const Content = styled.div`
     position: fixed;
     right: 0;
     bottom: 0;
-    margin-right: 1.2em;
+    margin-right: 1.5em;
     margin-bottom: 1rem;
 `;

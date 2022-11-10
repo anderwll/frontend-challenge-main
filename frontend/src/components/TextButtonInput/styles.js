@@ -4,6 +4,7 @@ export const Content = styled.div`
   display: flex;
   position: fixed;
   align-items: center;
+  text-align: center;
   justify-content: space-between;
   flex-grow: 1;
   height: 4.1rem;
@@ -21,12 +22,11 @@ export const Content = styled.div`
     font-weight: 400;
     letter-spacing: 0.13rem;
     cursor: pointer;
-
+   
     @media only screen and ( max-width: 723px) {
       opacity: 0;
     }
   }
-
 `;
 
 export const Box = styled.div`

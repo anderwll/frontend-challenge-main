@@ -5,6 +5,7 @@ export const Container = styled.div`
   position: relative;
   background-color: ${props => props.background ? 'rgb(25, 118, 210)' : 'transparent'};
   color: white;
+  align-items: center;
   padding: 0.9rem;
   border: 1px solid #333;
   cursor: pointer;
@@ -14,7 +15,7 @@ export const Container = styled.div`
     position: relative;
     font-size: 1.14rem;
     letter-spacing: 0.00938em;
-    line-height: 1.5;
+    line-height: 1.1;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-weight: 300;
     text-transform: uppercase;
