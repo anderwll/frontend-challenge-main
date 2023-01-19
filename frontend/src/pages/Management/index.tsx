@@ -8,7 +8,6 @@ const ManagementPage = () => {
   useEffect(() => {
       document.title = 'Gerência de conta | Refresher';
       setOpenModalLogin(true);
-      alert('Necessário login...');
     }, []);
 
   return (
