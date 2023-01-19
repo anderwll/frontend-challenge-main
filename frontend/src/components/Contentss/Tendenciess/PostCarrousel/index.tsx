@@ -12,7 +12,7 @@ const PostCarrousel: React.FC<PostCarrouselProps> = ({ listImages }) => {
         <Content>
              <Carousel >
                     {listImages.map((item: string, index: number) => (
-                        <Carousel.Item>
+                        <Carousel.Item key={index}>
                             <DivImage >
                                 <img
                                     src={item}
