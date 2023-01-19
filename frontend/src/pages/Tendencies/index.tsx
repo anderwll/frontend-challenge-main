@@ -7,7 +7,7 @@ import { setId } from '../../store/trendID/trendIDSlice';
 import { getTrends } from '../../store/trends/trendsSlice';
 import { useNavigate } from 'react-router-dom';
 
-// FIXO NO CODE ---
+// FIXO NO CODE (VER PÁGINA TENDENCIES CONTENT) ---
 import { post_images } from '../../imgs/data';
 
 const TendenciesPage = () => {
@@ -15,6 +15,10 @@ const TendenciesPage = () => {
     const navigate = useNavigate();
     const matches = useMediaQuery('(max-width:600px)');
     const data = useAppSelector((state) => state.trends.data);
+
+    useEffect(() => {
+        document.title = 'Tendências | Refresher';
+      }, []);
     
     useEffect(() => {
         if(!data) {
@@ -25,7 +29,6 @@ const TendenciesPage = () => {
     const handleCard = (id: number) => {
         dispacth(setId(id));
         localStorage.setItem('id', JSON.stringify(id));
-        
         navigate(`/tendencies/name-content`);
     };
 

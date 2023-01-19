@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getTrendId } from '../../store/trendID/trendIDSlice';
 import { Content } from './styled';
 import { Container } from '../styled';
+import { useLocation } from 'react-router-dom';
 
 // --- COMPONENTES TENDENCIAS ---
 import ShareButton from '../../components/Contentss/Tendenciess/ShareButton';
@@ -11,19 +12,24 @@ import PostContent from '../../components/Contentss/Tendenciess/PostContent';
 import PostTitle from '../../components/Contentss/Tendenciess/PostTitle';
 import PostCarrousel from '../../components/Contentss/Tendenciess/PostCarrousel';
 
-// AQUI SIMULA UM ATRIBUTO post_images COM AS IMAGENS SEPARA DE CADA CONTEUDO ---
+// AQUI SIMULA UM ATRIBUTO post_images COM AS IMAGENS SEPARADAS DE CADA CONTEUDO ---
 import { post_images } from '../../imgs/data';
 
 const TendenciesContentPage = () => {
     const dispatch = useAppDispatch();
+    const location = useLocation();
     const id = localStorage.getItem('id');
     const data = useAppSelector((state) => state.trendID.data);
 
     useEffect(() => {
-       if(id) {
-        dispatch(getTrendId(Number(id)))
-       }
-    }, [id, dispatch]);
+        if(id) {
+         dispatch(getTrendId(Number(id)))
+        }
+     }, [id, dispatch, location]);
+
+    useEffect(() => {
+        document.title = 'Tendências | Refresher';
+    }, []);
 
     return (
         <Container> 

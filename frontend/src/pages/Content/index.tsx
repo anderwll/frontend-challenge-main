@@ -16,6 +16,12 @@ const ContentPage: React.FC = () => {
   const dispacth = useAppDispatch()
   const navigate = useNavigate();
   const data  = useAppSelector((state) => state.trends.data);
+  //const [url, setUrl] = useState(JSON.parse(localStorage.getItem('route') || ''));
+  
+  useEffect(() => {
+    document.title = 'Conteúdos | Refresher';
+    localStorage.setItem('route', JSON.stringify(''));
+  }, []);
 
   useEffect(() => {
     if(!data) {
@@ -28,10 +34,9 @@ const ContentPage: React.FC = () => {
  };
 
  const handlePaper = (id: number) => {
-    dispacth(setId(id));
     localStorage.setItem('id', JSON.stringify(id));
-    
-    navigate("/tendencies/name-content");
+    dispacth(setId(id));
+    navigate("/tendencies/name-content");      
  };
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { 
   Handshake, 
@@ -19,24 +19,30 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isActive, mouseEnter, mouseLeave, mouseClick }) => {
+  const [titleDOM, setTitleDOM] = useState('');
+  
+  useEffect(() => {
+    document.title = `${titleDOM}Refresher`
+  }, [titleDOM]);
+
   return (
     <Container isSidebarOn={isActive} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onClick={mouseClick}>
-        <Link to="/management">
+        <Link to="/management" onClick={() => setTitleDOM('Gerência | ')}>
           <SidebarItem Icon={RocketLaunch} text='Gerência de conta' background={true} />
         </Link>
-        <Link to="/home">
+        <Link to="/home" onClick={() => setTitleDOM('')}>
           <SidebarItem Icon={Home} text='Home' />
         </Link>
-        <Link to="/client">
+        <Link to="/client" onClick={() => setTitleDOM('Clientes | ')}>
           <SidebarItem Icon={Groups2} text='Clientes' />
         </Link>
-        <Link to="/content">
+        <Link to="/content" onClick={() => setTitleDOM('Conteúdos | ')}>
           <SidebarItem Icon={Widgets} text='Conteúdos' />
         </Link>
-        <Link to="/provider">
+        <Link to="/provider" onClick={() => setTitleDOM('Fornecedores | ')}>
           <SidebarItem Icon={Handshake} text='Fornecedores' />
         </Link>
-        <Link to="/store">
+        <Link to="/store" onClick={() => setTitleDOM('Store | ')}>
           <SidebarItem Icon={AutoStories} text='Store' />
         </Link>
     </Container>

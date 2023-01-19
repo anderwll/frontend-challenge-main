@@ -24,9 +24,9 @@ function AppRoutes () {
         <Route path="/provider" element={<LayoutDefault component={ProvidersPage} />}/>
         <Route path="/store" element={<LayoutDefault component={StorePage} />}/>
         <Route path="/tendencies" element={<LayoutDefault component={TendenciesPage} />}/>
-        <Route path="/tendencies/name-content" element={<LayoutDefault component={TendenciesContentPage} />}/>
-
-        <Route path="*" element={<LayoutDefault component={HomePage} />}/>
+        <Route  path="/tendencies/name-content" element={<LayoutDefault component={TendenciesContentPage} />}/>
+        
+        <Route  path="*" element={<LayoutDefault component={HomePage} />}/>
       </Routes>
     </BrowserRouter>
   );
