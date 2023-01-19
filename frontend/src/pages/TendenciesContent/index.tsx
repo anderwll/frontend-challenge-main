@@ -12,7 +12,7 @@ import PostContent from '../../components/Contentss/Tendenciess/PostContent';
 import PostTitle from '../../components/Contentss/Tendenciess/PostTitle';
 import PostCarrousel from '../../components/Contentss/Tendenciess/PostCarrousel';
 
-// AQUI SIMULA UM ATRIBUTO post_images COM AS IMAGENS SEPARADAS DE CADA CONTEUDO ---
+// --- AQUI SIMULA UM ATRIBUTO post_images COM AS IMAGENS SEPARADAS DE CADA CONTEUDO ---
 import { post_images } from '../../imgs/data';
 
 const TendenciesContentPage = () => {

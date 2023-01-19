@@ -1,16 +1,18 @@
 import * as React from 'react';
-import { Box, Input } from '@mui/material';
+import { Box, Input, useMediaQuery } from '@mui/material';
 
 const ComentInput: React.FC = () => {
+  const matches = useMediaQuery('(max-width: 600px)');
+
   return (
     <Box>
         <Input sx={{
-            width: '100%', 
+            width: matches ? '82%' :'100%', 
             m: '2rem 0', 
             padding: 1, 
             backgroundColor: '#dee1e3', 
-            color: 'black',
-            borderRadius: 1
+            color: '#000',
+            borderRadius: 0.5
         }}  
         placeholder='Comentários, sugestões ...' 
       />

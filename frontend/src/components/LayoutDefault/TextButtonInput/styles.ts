@@ -12,6 +12,7 @@ export const Content = styled.div`
   margin-left: 3.8rem;
 
   > a {
+    display: block;
     line-height: 1.6;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -25,7 +26,7 @@ export const Content = styled.div`
     margin-left: 1rem;
    
     @media only screen and ( max-width: 723px) {
-      opacity: 0;
+      display: none;
     }
   }
 `;
