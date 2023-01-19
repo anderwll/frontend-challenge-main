@@ -4,7 +4,8 @@
   "description": "Trends are essential part of REFRESHER's content. Bounded within the application they are our blog content. Therefore, we rely on their good quality, free availability and search engine optimization to engage more people.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "json-server -p 8000 -w db.json"
   },
   "repository": {
     "type": "git",
