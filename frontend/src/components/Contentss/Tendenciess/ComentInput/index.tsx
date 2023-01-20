@@ -3,7 +3,7 @@ import { Box, Input, useMediaQuery, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 const ComentInput: React.FC = () => {
-  const matches = useMediaQuery('(max-width: 600px)');
+  const matches = useMediaQuery('(max-width: 900px)');
   const [input, setInput] = useState('');
   const [inputError, setInputError] = useState(false);
   const [button, setButton] = useState(false);
@@ -32,11 +32,11 @@ const ComentInput: React.FC = () => {
 
   return (
     <Box sx={{ width: matches ? '83%' : '100%', display: 'flex'}}>
-        <Button variant="text" color="inherit" sx={{display: input.length < 3 ? 'none' : 'block', ml: 0, mt: 4, height: '45%'}} onClick={handleSend}>
+        <Button variant="text" color="inherit" sx={{display: input.length < 3 ? 'none' : 'block', mt: 4, height: '45%'}} onClick={handleSend}>
           <SendIcon />
         </Button>
         <Input sx={{ 
-            width: button ? '85%' :'100%',
+            width: button && matches ? '90%' :'100%',
             m: '2rem 0', 
             padding: 1, 
             backgroundColor: '#dee1e3', 

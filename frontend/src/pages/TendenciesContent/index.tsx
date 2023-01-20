@@ -27,8 +27,7 @@ const TendenciesContentPage: React.FC<TendenciesContentPageProps> = ({ trend }) 
 
     useEffect(() => {
         const id = localStorage.getItem('id');
-        console.log(id);
-
+        
         if(!id) {
            navigate('/tendencies') 
            return

@@ -3,9 +3,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
+import { useMediaQuery } from '@mui/material';
 
 function Spinner() {
   const navigate = useNavigate();
+  const matches = useMediaQuery('(max-width: 900px)');
   const { id } = useAppSelector((state) => state.trendID)
 
   useEffect(() => {
@@ -24,7 +26,7 @@ function Spinner() {
         position: 'absolute' as 'absolute',
         bottom: 0,
         right: 0,
-        width: 'calc(100% - 4rem)',
+        width: matches ? '100vw' :'calc(100% - 4rem)',
         height: 'calc(100% - 4rem)',
         bgcolor: '#fff',
         zIndex: 9999,
