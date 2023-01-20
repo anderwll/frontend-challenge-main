@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Content, Section } from './styled';
 
 import Sidebar from '../components/LayoutDefault/Sidebar';
@@ -7,15 +7,45 @@ import FloatingButton from '../components/LayoutDefault/FloatingButton';
 import NavBar from '../components/LayoutDefault/NavBar';
 import LoginModal from '../components/Modals/LoginModal';
 import SuportModal from '../components/Modals/SuportModal';
+import { useAppSelector } from '../store/hooks';
+import { setTrendId, Trend } from '../store/trendID/trendIDSlice';
+import { useNavigate } from 'react-router-dom';
+import { getAllTendencies } from '../store/trends/trendsSlice';
+import { useDispatch } from 'react-redux';
 
 interface LayoutDefaultProps {
-  component: React.FC
+  component: JSX.Element
 }
 
-const LayoutDefault: React.FC<LayoutDefaultProps> = ({ component: Component }) => {
+const LayoutDefault: React.FC<LayoutDefaultProps> = ({ component }) => {
   const [sidebar, setSidebar] = useState(false);
   const [openModalLogin, setOpenModalLogin] = useState(false);
   const [openModalSuport, setOpenModalSuport] = useState(false);
+  const [idLocal, setIdLocal] = useState<string>('')
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const trendsRedux = useAppSelector(getAllTendencies);
+  
+  useEffect(() => {
+      const id = localStorage.getItem('id');
+
+      if(id) {
+        setIdLocal(id);
+      } 
+  }, [navigate]);
+  
+  useEffect(() => {
+      document.title = 'Tendências | Refresher'
+
+      const trendFounded = trendsRedux.find((value) => value.id === Number(idLocal));
+
+      if(trendFounded) {
+          dispatch(setTrendId(trendFounded));
+          console.log('Disparouuu' + trendFounded);
+      }
+
+  }, [trendsRedux, idLocal, dispatch]);
 
   const handleOpenModalLogin = () => {
     setOpenModalLogin(true);
@@ -37,7 +67,7 @@ const LayoutDefault: React.FC<LayoutDefaultProps> = ({ component: Component }) =
       )}
 
       <Section isSidebarActive={sidebar} onClick={() => setSidebar(false)}>
-        <Component  />
+        { component }
       </Section>
 
       <LoginModal isOpen={openModalLogin} handleClose={() => setOpenModalLogin(false)} />

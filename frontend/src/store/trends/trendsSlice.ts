@@ -1,13 +1,14 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
+import { RootState } from '..';
 import { apiGET } from '../../services';
-import { InitialStateInt, ResponseAPI } from '../typeStore';
 
-const initialState: InitialStateInt = {
-    loading: false,
-    success: false,
-    message: '',
-    data: null
-};
+const adapter = createEntityAdapter<any>({
+    selectId: (entity) => entity.id
+});
+
+
+export const { selectAll: getAllTendencies, selectById: getTendencyByID } = adapter.getSelectors((state: RootState) => state.trends)
+
 
 const getTrends = createAsyncThunk('trends/getTrends', async () => {
     const response = await apiGET('/trends');
@@ -16,7 +17,11 @@ const getTrends = createAsyncThunk('trends/getTrends', async () => {
 
 const trendsSlice = createSlice({
     name: 'trends',
-    initialState,
+    initialState: adapter.getInitialState({
+        loading: false,
+        message: '',
+        success: false,
+    }),
     reducers: {},
     extraReducers: (builder) => {
         // --- BUSCAR TODOS ---
@@ -24,20 +29,18 @@ const trendsSlice = createSlice({
         builder.addCase(getTrends.pending, (state, action) => {
             state.loading = true;
         })
-        builder.addCase(getTrends.fulfilled, (state, action: PayloadAction<ResponseAPI>) => {
+        builder.addCase(getTrends.fulfilled, (state, action) => {
             state.loading = false;
             state.success = action.payload.success;
             state.message = action.payload.message;
 
             if(action.payload.success) {
-                state.data = action.payload.data
+                adapter.setAll(state, action.payload.data)
             }
         }) 
         builder.addCase(getTrends.rejected, (state) => {
             state.success = false; 
         })
-
-       
     }
 })
 

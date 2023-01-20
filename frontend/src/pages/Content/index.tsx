@@ -1,42 +1,40 @@
 import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getTrends } from '../../store/trends/trendsSlice';
+import { getAllTendencies } from '../../store/trends/trendsSlice';
 import { Container, Content } from '../styled';
 import Typography from '@mui/material/Typography'
 import { Box, Button } from '@mui/material';
 import MyPaper from '../../components/Contentss/Paper';
 import { useNavigate } from 'react-router-dom';
-import { setId } from '../../store/trendID/trendIDSlice';
-
-// FIXO NO CODE ---
-import { post_images } from '../../imgs/data';
+import { setTrendId } from '../../store/trendID/trendIDSlice';
+import { setIdSelected } from '../../store/idTrendSelected/idTrendSelectedSlice';
 
 const ContentPage: React.FC = () => {
   const dispacth = useAppDispatch()
   const navigate = useNavigate();
-  const data  = useAppSelector((state) => state.trends.data);
-  //const [url, setUrl] = useState(JSON.parse(localStorage.getItem('route') || ''));
+  const trendsRedux = useAppSelector(getAllTendencies)
   
   useEffect(() => {
     document.title = 'Conteúdos | Refresher';
-    localStorage.setItem('route', JSON.stringify(''));
   }, []);
-
-  useEffect(() => {
-    if(!data) {
-      dispacth(getTrends())
-    }
-  }, [data, dispacth])
 
  const handleViewMore = () => {
     navigate('/tendencies');
  };
 
  const handlePaper = (id: number) => {
-    localStorage.setItem('id', JSON.stringify(id));
-    dispacth(setId(id));
-    navigate("/tendencies/name-content");      
+    dispacth(setIdSelected(`${id}`));
+
+    localStorage.setItem('id', `${id}`);
+    
+    const trendFounded = trendsRedux.find((value) => value.id === id)
+
+    if(trendFounded) {
+      dispacth(setTrendId(trendFounded))
+
+      navigate(`/tendencie/${trendFounded.post_name}`); 
+    }      
  };
 
   return (
@@ -50,12 +48,11 @@ const ContentPage: React.FC = () => {
         </Box>
 
         <Box sx={{display: 'flex', height: '17.5rem', width: '100%', p: '1rem 0.2rem', overflowY: 'auto'}}>
-          {data && data.map((item: any, index: number) => (
+          {trendsRedux && trendsRedux.map((item: any) => (
             <MyPaper key={item.id} 
-                  cardClick={() => 
-                  handlePaper(item.id)}  
+                  cardClick={() =>  handlePaper(item.id)}  
                   title={item.post_title} 
-                  background={post_images[index]}/>
+                  background={item.post_images[0]}/>
           ))}
         </Box>
       </Content>

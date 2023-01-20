@@ -4,7 +4,6 @@ import { Container } from '../styled';
 const HomePage = () => {
   useEffect(() => {
     document.title = 'Refresher';
-    localStorage.setItem('route', '')
   }, []);
 
     return (
