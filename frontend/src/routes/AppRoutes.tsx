@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 import LayoutDefault from '../layout';
-import { CircularProgress } from '@mui/material';
 
 // -- PAGINAS 
 import ClientPage from '../pages/Client';
 import ContentPage from '../pages/Content';
 import HomePage from '../pages/Home';
 import ManagementPage from '../pages/Management';
+import NOTFoundPage from '../pages/NOTFound';
 import ProvidersPage from '../pages/Providers';
 import StorePage from '../pages/Store';
 import TendenciesPage from '../pages/Tendencies';
@@ -28,10 +29,10 @@ const AppRoutes: React.FC = () => {
         <Route path="/provider" element={<LayoutDefault component={<ProvidersPage />} />}/>
         <Route path="/store" element={<LayoutDefault component={<StorePage />} />}/>
         <Route path='/tendencies' element={<LayoutDefault component={<TendenciesPage />} />} /> 
-
         <Route path={`/tendencie/${trend.post_name}`} element={<LayoutDefault component={<TendenciesContentPage trend={trend} />} />}/>
         
-        <Route  path="*" element={<LayoutDefault component={<CircularProgress />} />} />
+        <Route  path="*" element={<LayoutDefault component={<Spinner />} />} />
+        <Route  path="/not-found" element={<NOTFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

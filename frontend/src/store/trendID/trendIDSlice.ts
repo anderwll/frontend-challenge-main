@@ -6,6 +6,7 @@ export interface Trend {
     post_content: string;
     post_name: string;
     post_images: string[];
+    guid: string;
 }
 
 const initialState: Trend = {
@@ -13,7 +14,8 @@ const initialState: Trend = {
     post_title: '',
     post_content: '',
     post_name: '',
-    post_images: []
+    post_images: [],
+    guid: ''
 };
 
 const trendIDSlice = createSlice({

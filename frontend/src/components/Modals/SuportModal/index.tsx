@@ -48,7 +48,7 @@ const SuportModal: React.FC<SuportModalProps> = ({ isOpen, handleClose }) => {
                         <Typography variant="subtitle1" color="#000" fontWeight='bold'>Como podemos ajudá-los?</Typography>
                         <TextField variant='outlined' color='info' multiline rows={3} />
                         <Typography variant="subtitle1" color="#000" fontWeight='bold'>Anexos</Typography>
-                        <TextField variant='outlined' color='info' placeholder='🔗 Adicione até 5 arquivos'/>                       
+                        <TextField variant='outlined' color='info' placeholder='🔗 Adicione até 5 arquivos' />                       
                     </Box>
                     <Box sx={{height: 50, width: '100%', p: '0 1rem', display: 'flex', flexDirection: 'row', alignItems: 'end', justifyContent: 'space-between',gap: 2, borderTop: '1px solid #3333'}}>
                         <Typography variant="subtitle2" color="#707070">zendesk</Typography>

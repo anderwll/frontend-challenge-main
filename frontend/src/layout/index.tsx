@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Content, Section } from './styled';
-
 import Sidebar from '../components/LayoutDefault/Sidebar';
-
 import FloatingButton from '../components/LayoutDefault/FloatingButton';
 import NavBar from '../components/LayoutDefault/NavBar';
 import LoginModal from '../components/Modals/LoginModal';
 import SuportModal from '../components/Modals/SuportModal';
 import { useAppSelector } from '../store/hooks';
-import { setTrendId, Trend } from '../store/trendID/trendIDSlice';
+import { setTrendId } from '../store/trendID/trendIDSlice';
 import { useNavigate } from 'react-router-dom';
 import { getAllTendencies } from '../store/trends/trendsSlice';
 import { useDispatch } from 'react-redux';
@@ -36,13 +34,10 @@ const LayoutDefault: React.FC<LayoutDefaultProps> = ({ component }) => {
   }, [navigate]);
   
   useEffect(() => {
-      document.title = 'Tendências | Refresher'
-
       const trendFounded = trendsRedux.find((value) => value.id === Number(idLocal));
 
       if(trendFounded) {
           dispatch(setTrendId(trendFounded));
-          console.log('Disparouuu' + trendFounded);
       }
 
   }, [trendsRedux, idLocal, dispatch]);
